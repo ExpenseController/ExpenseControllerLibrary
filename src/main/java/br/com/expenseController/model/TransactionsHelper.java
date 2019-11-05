@@ -1,4 +1,4 @@
-package br.com.expenseController;
+package br.com.expenseController.model;
 
 import org.omg.CORBA.Any;
 import org.omg.CORBA.ORB;

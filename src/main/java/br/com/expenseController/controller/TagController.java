@@ -1,4 +1,4 @@
-package br.com.expenseController.controllers;
+package br.com.expenseController.controller;
 
 import org.omg.CORBA.portable.IDLEntity;
 

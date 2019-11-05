@@ -1,5 +1,8 @@
 package br.com.expenseController.persistence;
 
+import br.com.expenseController.model.Tag;
+import br.com.expenseController.model.TagHelper;
+import br.com.expenseController.model.TagsHelper;
 import org.omg.CORBA.portable.ApplicationException;
 import org.omg.CORBA.portable.Delegate;
 import org.omg.CORBA.portable.InputStream;
@@ -9,12 +12,12 @@ import org.omg.CORBA.portable.RemarshalException;
 
 public class _TagPersistenceStub extends ObjectImpl implements TagPersistence {
 
-    public boolean insert(br.com.expenseController.Tag tag) {
+    public boolean insert(Tag tag) {
         InputStream $in = null;
-        
+
         try {
             OutputStream $out = _request("insert", true);
-            br.com.expenseController.TagHelper.write($out, tag);
+            TagHelper.write($out, tag);
             $in = _invoke($out);
             boolean $result = $in.read_boolean();
             return $result;
@@ -29,11 +32,11 @@ public class _TagPersistenceStub extends ObjectImpl implements TagPersistence {
         }
     } // insert
 
-    public boolean update(br.com.expenseController.Tag tag) {
+    public boolean update(Tag tag) {
         InputStream $in = null;
         try {
             OutputStream $out = _request("update", true);
-            br.com.expenseController.TagHelper.write($out, tag);
+            TagHelper.write($out, tag);
             $in = _invoke($out);
             boolean $result = $in.read_boolean();
             return $result;
@@ -48,11 +51,11 @@ public class _TagPersistenceStub extends ObjectImpl implements TagPersistence {
         }
     } // update
 
-    public boolean remove(br.com.expenseController.Tag tag) {
+    public boolean remove(Tag tag) {
         InputStream $in = null;
         try {
             OutputStream $out = _request("remove", true);
-            br.com.expenseController.TagHelper.write($out, tag);
+            TagHelper.write($out, tag);
             $in = _invoke($out);
             boolean $result = $in.read_boolean();
             return $result;
@@ -67,13 +70,13 @@ public class _TagPersistenceStub extends ObjectImpl implements TagPersistence {
         }
     } // remove
 
-    public br.com.expenseController.Tag load(int code) {
+    public Tag load(int code) {
         InputStream $in = null;
         try {
             OutputStream $out = _request("load", true);
             $out.write_long(code);
             $in = _invoke($out);
-            br.com.expenseController.Tag $result = br.com.expenseController.TagHelper.read($in);
+            Tag $result = TagHelper.read($in);
             return $result;
         } catch (ApplicationException $ex) {
             $in = $ex.getInputStream();
@@ -86,12 +89,12 @@ public class _TagPersistenceStub extends ObjectImpl implements TagPersistence {
         }
     } // load
 
-    public br.com.expenseController.Tag[] loadAll() {
+    public Tag[] loadAll() {
         InputStream $in = null;
         try {
             OutputStream $out = _request("loadAll", true);
             $in = _invoke($out);
-            br.com.expenseController.Tag $result[] = br.com.expenseController.TagsHelper.read($in);
+            Tag $result[] = TagsHelper.read($in);
             return $result;
         } catch (ApplicationException $ex) {
             $in = $ex.getInputStream();

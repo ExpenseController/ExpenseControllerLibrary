@@ -1,4 +1,4 @@
-package br.com.expenseController.controllers;
+package br.com.expenseController.controller;
 
 import org.omg.CORBA.Any;
 import org.omg.CORBA.BAD_PARAM;
@@ -27,7 +27,7 @@ abstract public class TransactionControllerHelper {
 
     synchronized public static TypeCode type() {
         if (TYPE_CODE == null) {
-            TYPE_CODE = ORB.init().create_interface_tc(br.com.expenseController.controllers.TransactionControllerHelper.id(), "TransactionController");
+            TYPE_CODE = ORB.init().create_interface_tc(TransactionControllerHelper.id(), "TransactionController");
         }
 
         return TYPE_CODE;

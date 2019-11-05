@@ -1,7 +1,7 @@
-package br.com.expenseController.controllers;
+package br.com.expenseController.controller;
 
-import br.com.expenseController.Period;
-import br.com.expenseController.Transaction;
+import br.com.expenseController.model.Period;
+import br.com.expenseController.model.Transaction;
 
 public interface TransactionControllerOperations {
 

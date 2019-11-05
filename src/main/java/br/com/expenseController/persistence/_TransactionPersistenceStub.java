@@ -1,8 +1,10 @@
 package br.com.expenseController.persistence;
 
-import br.com.expenseController.Transaction;
-import br.com.expenseController.TransactionHelper;
-import br.com.expenseController.TransactionsHelper;
+import br.com.expenseController.model.Period;
+import br.com.expenseController.model.PeriodHelper;
+import br.com.expenseController.model.Transaction;
+import br.com.expenseController.model.TransactionHelper;
+import br.com.expenseController.model.TransactionsHelper;
 import org.omg.CORBA.ORB;
 import org.omg.CORBA.portable.ApplicationException;
 import org.omg.CORBA.portable.Delegate;
@@ -116,12 +118,12 @@ public class _TransactionPersistenceStub extends ObjectImpl implements Transacti
         }
     }
 
-    public Transaction[] loadPeriod(br.com.expenseController.Period Period) {
+    public Transaction[] loadPeriod(Period Period) {
         InputStream inputStream = null;
         
         try {
             OutputStream outputStream = _request("loadPeriod", true);
-            br.com.expenseController.PeriodHelper.write(outputStream, Period);
+            PeriodHelper.write(outputStream, Period);
             inputStream = _invoke(outputStream);
             Transaction result[] = TransactionsHelper.read(inputStream);
             return result;

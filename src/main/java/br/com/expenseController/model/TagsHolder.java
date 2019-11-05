@@ -1,4 +1,4 @@
-package br.com.expenseController;
+package br.com.expenseController.model;
 
 import org.omg.CORBA.portable.InputStream;
 import org.omg.CORBA.portable.OutputStream;

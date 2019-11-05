@@ -1,4 +1,4 @@
-package br.com.expenseController;
+package br.com.expenseController.model;
 
 import java.util.ArrayList;
 import java.util.List;

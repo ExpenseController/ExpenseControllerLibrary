@@ -1,4 +1,4 @@
-package br.com.expenseController;
+package br.com.expenseController.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,16 +49,16 @@ abstract public class PeriodHelper {
                             "description",
                             membersTypeCode,
                             null);
-                    membersTypeCode = br.com.expenseController.TransactionHelper.type();
+                    membersTypeCode = TransactionHelper.type();
                     membersTypeCode = ORB.init().create_sequence_tc(0, membersTypeCode);
-                    membersTypeCode = ORB.init().create_alias_tc(br.com.expenseController.TransactionsHelper.id(), "Transactions", membersTypeCode);
+                    membersTypeCode = ORB.init().create_alias_tc(TransactionsHelper.id(), "Transactions", membersTypeCode);
                     members[2] = new StructMember(
                             "outlay",
                             membersTypeCode,
                             null);
-                    membersTypeCode = br.com.expenseController.TransactionHelper.type();
+                    membersTypeCode = TransactionHelper.type();
                     membersTypeCode = ORB.init().create_sequence_tc(0, membersTypeCode);
-                    membersTypeCode = ORB.init().create_alias_tc(br.com.expenseController.TransactionsHelper.id(), "Transactions", membersTypeCode);
+                    membersTypeCode = ORB.init().create_alias_tc(TransactionsHelper.id(), "Transactions", membersTypeCode);
                     members[3] = new StructMember(
                             "earnings",
                             membersTypeCode,

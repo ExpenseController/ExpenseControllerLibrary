@@ -1,7 +1,7 @@
-package br.com.expenseController.controllers;
+package br.com.expenseController.controller;
 
-import br.com.expenseController.Tag;
-import br.com.expenseController.TagHelper;
+import br.com.expenseController.model.Tag;
+import br.com.expenseController.model.TagHelper;
 import java.util.Properties;
 import org.omg.CORBA.MARSHAL;
 import org.omg.CORBA.ORB;

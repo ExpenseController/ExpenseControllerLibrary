@@ -1,4 +1,4 @@
-package br.com.expenseController;
+package br.com.expenseController.model;
 
 import java.math.BigDecimal;
 import org.omg.CORBA.Any;

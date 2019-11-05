@@ -1,8 +1,8 @@
-package br.com.expenseController.controllers;
+package br.com.expenseController.controller;
 
-import br.com.expenseController.Period;
-import br.com.expenseController.PeriodHelper;
-import br.com.expenseController.PeriodsHelper;
+import br.com.expenseController.model.Period;
+import br.com.expenseController.model.PeriodHelper;
+import br.com.expenseController.model.PeriodsHelper;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -22,7 +22,7 @@ public class _PeriodControllerStub extends ObjectImpl implements PeriodControlle
         
         try {
             OutputStream $out = _request("insert", true);
-            br.com.expenseController.PeriodHelper.write($out, period);
+            PeriodHelper.write($out, period);
             $in = _invoke($out);
             boolean $result = $in.read_boolean();
             return $result;

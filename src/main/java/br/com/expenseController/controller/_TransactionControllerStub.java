@@ -1,9 +1,10 @@
-package br.com.expenseController.controllers;
+package br.com.expenseController.controller;
 
-import br.com.expenseController.Period;
-import br.com.expenseController.Transaction;
-import br.com.expenseController.TransactionHelper;
-import br.com.expenseController.TransactionsHelper;
+import br.com.expenseController.model.Period;
+import br.com.expenseController.model.PeriodHelper;
+import br.com.expenseController.model.Transaction;
+import br.com.expenseController.model.TransactionHelper;
+import br.com.expenseController.model.TransactionsHelper;
 import org.omg.CORBA.MARSHAL;
 import org.omg.CORBA.ORB;
 import org.omg.CORBA.portable.ApplicationException;
@@ -123,7 +124,7 @@ public class _TransactionControllerStub extends ObjectImpl implements Transactio
         
         try {
             OutputStream outputStream = _request("loadPeriod", true);
-            br.com.expenseController.PeriodHelper.write(outputStream, Period);
+            PeriodHelper.write(outputStream, Period);
             inputStream = _invoke(outputStream);
             Transaction result[] = TransactionsHelper.read(inputStream);
             return result;
