@@ -1,5 +1,7 @@
 package br.com.expenseController.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.omg.CORBA.Any;
 import org.omg.CORBA.ORB;
 import org.omg.CORBA.TypeCode;
@@ -11,14 +13,14 @@ abstract public class TagsHelper {
     private static final String ID = "IDL:br/com/expenseController/Tags:1.0";
     private static TypeCode TYPE_CODE = null;
 
-    public static void insert(Any any, Tag[] tags) {
+    public static void insert(Any any, List<Tag> tags) {
         OutputStream out = any.create_output_stream();
         any.type(type());
         write(out, tags);
         any.read_value(out.create_input_stream(), type());
     }
 
-    public static Tag[] extract(Any any) {
+    public static List<Tag> extract(Any any) {
         return read(any.create_input_stream());
     }
 
@@ -35,23 +37,23 @@ abstract public class TagsHelper {
         return ID;
     }
 
-    public static Tag[] read(InputStream istream) {
-        Tag value[] = null;
+    public static List<Tag> read(InputStream istream) {
+        List<Tag> value = null;
         int lenght = istream.read_long();
-        value = new Tag[lenght];
+        value = new ArrayList<>(lenght);
 
-        for (int i = 0; i < value.length; ++i) {
-            value[i] = TagHelper.read(istream);
+        for (int i = 0; i < value.size(); ++i) {
+            value.add(TagHelper.read(istream));
         }
 
         return value;
     }
 
-    public static void write(OutputStream ostream, Tag[] value) {
-        ostream.write_long(value.length);
+    public static void write(OutputStream ostream, List<Tag> value) {
+        ostream.write_long(value.size());
         
-        for (int i = 0; i < value.length; ++i) {
-            TagHelper.write(ostream, value[i]);
+        for (int i = 0; i < value.size(); ++i) {
+            TagHelper.write(ostream, value.get(i));
         }
     }
 

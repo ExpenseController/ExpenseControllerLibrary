@@ -1,17 +1,18 @@
 package br.com.expenseController.model;
 
+import java.util.List;
 import org.omg.CORBA.portable.InputStream;
 import org.omg.CORBA.portable.OutputStream;
 import org.omg.CORBA.portable.Streamable;
 
 public final class TransactionsHolder implements Streamable {
 
-    private Transaction value[] = null;
+    private List<Transaction> value = null;
 
     public TransactionsHolder() {
     }
 
-    public TransactionsHolder(Transaction[] initialValue) {
+    public TransactionsHolder(List<Transaction> initialValue) {
         value = initialValue;
     }
 

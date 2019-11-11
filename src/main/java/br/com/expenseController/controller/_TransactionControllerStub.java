@@ -1,10 +1,9 @@
 package br.com.expenseController.controller;
 
-import br.com.expenseController.model.Period;
-import br.com.expenseController.model.PeriodHelper;
 import br.com.expenseController.model.Transaction;
 import br.com.expenseController.model.TransactionHelper;
 import br.com.expenseController.model.TransactionsHelper;
+import java.util.List;
 import org.omg.CORBA.MARSHAL;
 import org.omg.CORBA.ORB;
 import org.omg.CORBA.portable.ApplicationException;
@@ -100,13 +99,13 @@ public class _TransactionControllerStub extends ObjectImpl implements Transactio
         }
     }
 
-    public Transaction[] loadAll() {
+    public List<Transaction> loadAll() {
         InputStream inputStream = null;
         
         try {
             OutputStream outputStream = _request("loadAll", true);
             inputStream = _invoke(outputStream);
-            Transaction result[] = TransactionsHelper.read(inputStream);
+            List<Transaction> result = TransactionsHelper.read(inputStream);
             return result;
         } catch (ApplicationException appException) {
             inputStream = appException.getInputStream();
@@ -114,26 +113,6 @@ public class _TransactionControllerStub extends ObjectImpl implements Transactio
             throw new MARSHAL(_id);
         } catch (RemarshalException remarshalException) {
             return loadAll();
-        } finally {
-            _releaseReply(inputStream);
-        }
-    }
-
-    public Transaction[] loadPeriod(Period Period) {
-        InputStream inputStream = null;
-        
-        try {
-            OutputStream outputStream = _request("loadPeriod", true);
-            PeriodHelper.write(outputStream, Period);
-            inputStream = _invoke(outputStream);
-            Transaction result[] = TransactionsHelper.read(inputStream);
-            return result;
-        } catch (ApplicationException appException) {
-            inputStream = appException.getInputStream();
-            String _id = appException.getId();
-            throw new MARSHAL(_id);
-        } catch (RemarshalException remarshalException) {
-            return loadPeriod(Period);
         } finally {
             _releaseReply(inputStream);
         }

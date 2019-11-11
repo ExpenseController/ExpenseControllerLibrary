@@ -3,6 +3,7 @@ package br.com.expenseController.persistence;
 import br.com.expenseController.model.Tag;
 import br.com.expenseController.model.TagHelper;
 import br.com.expenseController.model.TagsHelper;
+import java.util.List;
 import org.omg.CORBA.portable.ApplicationException;
 import org.omg.CORBA.portable.Delegate;
 import org.omg.CORBA.portable.InputStream;
@@ -12,6 +13,10 @@ import org.omg.CORBA.portable.RemarshalException;
 
 public class _TagPersistenceStub extends ObjectImpl implements TagPersistence {
 
+    private static String[] IDS = {
+        "IDL:br/com/expenseController/persistence/TagPersistence:1.0"
+    };
+    
     public boolean insert(Tag tag) {
         InputStream $in = null;
 
@@ -89,30 +94,29 @@ public class _TagPersistenceStub extends ObjectImpl implements TagPersistence {
         }
     } // load
 
-    public Tag[] loadAll() {
-        InputStream $in = null;
+    public List<Tag> loadAll() {
+        InputStream inputStream = null;
+        
         try {
-            OutputStream $out = _request("loadAll", true);
-            $in = _invoke($out);
-            Tag $result[] = TagsHelper.read($in);
-            return $result;
-        } catch (ApplicationException $ex) {
-            $in = $ex.getInputStream();
-            String _id = $ex.getId();
+            OutputStream outputStream = _request("loadAll", true);
+            inputStream = _invoke(outputStream);
+            List<Tag> result = TagsHelper.read(inputStream);
+        
+            return result;
+        } catch (ApplicationException appException) {
+            inputStream = appException.getInputStream();
+            String _id = appException.getId();
             throw new org.omg.CORBA.MARSHAL(_id);
-        } catch (RemarshalException $rm) {
+        } catch (RemarshalException remarshalException) {
             return loadAll();
         } finally {
-            _releaseReply($in);
+            _releaseReply(inputStream);
         }
-    } // loadAll
+    }
 
-    // Type-specific CORBA::Object operations
-    private static String[] __ids = {
-        "IDL:br/com/expenseController/persistence/TagPersistence:1.0"};
 
     public String[] _ids() {
-        return (String[]) __ids.clone();
+        return (String[]) IDS.clone();
     }
 
     private void readObject(java.io.ObjectInputStream s) throws java.io.IOException {

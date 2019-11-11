@@ -1,17 +1,18 @@
 package br.com.expenseController.model;
 
+import java.util.List;
 import org.omg.CORBA.portable.InputStream;
 import org.omg.CORBA.portable.OutputStream;
 import org.omg.CORBA.portable.Streamable;
 
 public final class TagsHolder implements Streamable {
 
-    private Tag value[] = null;
+    private List<Tag> value = null;
 
     public TagsHolder() {
     }
 
-    public TagsHolder(Tag[] initialValue) {
+    public TagsHolder(List<Tag> initialValue) {
         value = initialValue;
     }
 

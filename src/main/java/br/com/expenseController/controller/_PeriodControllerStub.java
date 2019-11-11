@@ -6,6 +6,7 @@ import br.com.expenseController.model.PeriodsHelper;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.List;
 import org.omg.CORBA.MARSHAL;
 import org.omg.CORBA.ORB;
 import org.omg.CORBA.portable.ApplicationException;
@@ -17,106 +18,107 @@ import org.omg.CORBA.portable.RemarshalException;
 
 public class _PeriodControllerStub extends ObjectImpl implements PeriodController {
 
+    private static String[] IDS = {
+        "IDL:br/com/expenseController/controllers/PeriodController:1.0"
+    };
+    
     public boolean insert(Period period) {
-        InputStream $in = null;
+        InputStream inputStream = null;
         
         try {
-            OutputStream $out = _request("insert", true);
-            PeriodHelper.write($out, period);
-            $in = _invoke($out);
-            boolean $result = $in.read_boolean();
-            return $result;
-        } catch (ApplicationException $ex) {
-            $in = $ex.getInputStream();
-            String _id = $ex.getId();
+            OutputStream outputStream = _request("insert", true);
+            PeriodHelper.write(outputStream, period);
+            inputStream = _invoke(outputStream);
+            boolean result = inputStream.read_boolean();
+            return result;
+        } catch (ApplicationException appException) {
+            inputStream = appException.getInputStream();
+            String _id = appException.getId();
             throw new org.omg.CORBA.MARSHAL(_id);
-        } catch (RemarshalException $rm) {
+        } catch (RemarshalException remarshalException) {
             return insert(period);
         } finally {
-            _releaseReply($in);
+            _releaseReply(inputStream);
         }
     }
 
     public boolean update(Period period) {
-        InputStream $in = null;
+        InputStream inputStream = null;
         try {
-            OutputStream $out = _request("update", true);
-            PeriodHelper.write($out, period);
-            $in = _invoke($out);
-            boolean $result = $in.read_boolean();
-            return $result;
-        } catch (ApplicationException $ex) {
-            $in = $ex.getInputStream();
-            String _id = $ex.getId();
+            OutputStream outputStream = _request("update", true);
+            PeriodHelper.write(outputStream, period);
+            inputStream = _invoke(outputStream);
+            boolean result = inputStream.read_boolean();
+            return result;
+        } catch (ApplicationException appException) {
+            inputStream = appException.getInputStream();
+            String _id = appException.getId();
             throw new MARSHAL(_id);
-        } catch (RemarshalException $rm) {
+        } catch (RemarshalException remarshalException) {
             return update(period);
         } finally {
-            _releaseReply($in);
+            _releaseReply(inputStream);
         }
     }
 
     public boolean remove(Period period) {
-        InputStream $in = null;
+        InputStream inputStream = null;
         
         try {
-            OutputStream $out = _request("remove", true);
-            PeriodHelper.write($out, period);
-            $in = _invoke($out);
-            boolean $result = $in.read_boolean();
-            return $result;
-        } catch (ApplicationException $ex) {
-            $in = $ex.getInputStream();
-            String _id = $ex.getId();
+            OutputStream outputStream = _request("remove", true);
+            PeriodHelper.write(outputStream, period);
+            inputStream = _invoke(outputStream);
+            boolean result = inputStream.read_boolean();
+            return result;
+        } catch (ApplicationException appException) {
+            inputStream = appException.getInputStream();
+            String _id = appException.getId();
             throw new MARSHAL(_id);
-        } catch (RemarshalException $rm) {
+        } catch (RemarshalException remarshalException) {
             return remove(period);
         } finally {
-            _releaseReply($in);
+            _releaseReply(inputStream);
         }
     }
 
     public Period load(int code) {
-        InputStream $in = null;
+        InputStream inputStream = null;
         
         try {
-            OutputStream $out = _request("load", true);
-            $out.write_long(code);
-            $in = _invoke($out);
-            Period $result = PeriodHelper.read($in);
-            return $result;
-        } catch (ApplicationException $ex) {
-            $in = $ex.getInputStream();
-            String _id = $ex.getId();
+            OutputStream outputStream = _request("load", true);
+            outputStream.write_long(code);
+            inputStream = _invoke(outputStream);
+            Period result = PeriodHelper.read(inputStream);
+            return result;
+        } catch (ApplicationException appException) {
+            inputStream = appException.getInputStream();
+            String _id = appException.getId();
             throw new MARSHAL(_id);
-        } catch (RemarshalException $rm) {
+        } catch (RemarshalException remarshalException) {
             return load(code);
         } finally {
-            _releaseReply($in);
+            _releaseReply(inputStream);
         }
     }
 
-    public Period[] loadAll() {
-        InputStream $in = null;
+    public List<Period> loadAll() {
+        InputStream inputStream = null;
 
         try {
-            OutputStream $out = _request("loadAll", true);
-            $in = _invoke($out);
-            Period $result[] = PeriodsHelper.read($in);
-            return $result;
-        } catch (ApplicationException $ex) {
-            $in = $ex.getInputStream();
-            String _id = $ex.getId();
+            OutputStream outputStream = _request("loadAll", true);
+            inputStream = _invoke(outputStream);
+            List<Period> result = PeriodsHelper.read(inputStream);
+            return result;
+        } catch (ApplicationException appException) {
+            inputStream = appException.getInputStream();
+            String _id = appException.getId();
             throw new MARSHAL(_id);
-        } catch (RemarshalException $rm) {
+        } catch (RemarshalException remarshalException) {
             return loadAll();
         } finally {
-            _releaseReply($in);
+            _releaseReply(inputStream);
         }
     }
-
-    private static String[] IDS = {
-        "IDL:br/com/expenseController/controllers/PeriodController:1.0"};
 
     public String[] _ids() {
         return (String[]) IDS.clone();

@@ -1,6 +1,7 @@
 package br.com.expenseController.persistence;
 
 import br.com.expenseController.model.Tag;
+import java.util.List;
 
 public interface TagPersistenceOperations {
 
@@ -12,5 +13,5 @@ public interface TagPersistenceOperations {
 
     Tag load(int code);
 
-    Tag[] loadAll();
+    List<Tag> loadAll();
 }

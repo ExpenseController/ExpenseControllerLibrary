@@ -1,7 +1,5 @@
 package br.com.expenseController.model;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.omg.CORBA.Any;
 import org.omg.CORBA.ORB;
@@ -78,8 +76,8 @@ abstract public class PeriodHelper {
     public static Period read(InputStream istream) {
         int code = istream.read_long();
         String description = istream.read_wstring();
-        List<Transaction> outlay = new ArrayList<>(Arrays.asList(TransactionsHelper.read(istream)));
-        List<Transaction> earnings = new ArrayList<>(Arrays.asList(TransactionsHelper.read(istream)));
+        List<Transaction> outlay = TransactionsHelper.read(istream);
+        List<Transaction> earnings = TransactionsHelper.read(istream);
         Period value = new Period(code, description, outlay, earnings);
         return value;
     }
@@ -87,8 +85,8 @@ abstract public class PeriodHelper {
     public static void write(OutputStream ostream, Period period) {
         ostream.write_long(period.getCode());
         ostream.write_wstring(period.getDescription());
-        TransactionsHelper.write(ostream, (Transaction[]) period.getOutlay().toArray());
-        TransactionsHelper.write(ostream, (Transaction[]) period.getEarnings().toArray());
+        TransactionsHelper.write(ostream, period.getOutlay());
+        TransactionsHelper.write(ostream, period.getEarnings());
     }
 
 }

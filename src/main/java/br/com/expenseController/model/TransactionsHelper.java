@@ -1,5 +1,7 @@
 package br.com.expenseController.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.omg.CORBA.Any;
 import org.omg.CORBA.ORB;
 import org.omg.CORBA.TypeCode;
@@ -11,14 +13,14 @@ abstract public class TransactionsHelper {
     private static final String ID = "IDL:br/com/expenseController/Transactions:1.0";
     private static TypeCode TYPE_CODE = null;
 
-    public static void insert(Any a, Transaction[] that) {
+    public static void insert(Any a, List<Transaction> that) {
         OutputStream out = a.create_output_stream();
         a.type(type());
         write(out, that);
         a.read_value(out.create_input_stream(), type());
     }
 
-    public static Transaction[] extract(Any a) {
+    public static List<Transaction> extract(Any a) {
         return read(a.create_input_stream());
     }
 
@@ -36,23 +38,23 @@ abstract public class TransactionsHelper {
         return ID;
     }
 
-    public static Transaction[] read(InputStream istream) {
-        Transaction value[] = null;
+    public static List<Transaction> read(InputStream istream) {
+        List<Transaction> value = null;
         int lenght = istream.read_long();
-        value = new Transaction[lenght];
+        value = new ArrayList<>(lenght);
         
-        for (int i = 0; i < value.length; ++i) {
-            value[i] = TransactionHelper.read(istream);
+        for (int i = 0; i < value.size(); ++i) {
+            value.add(TransactionHelper.read(istream));
         }
         
         return value;
     }
 
-    public static void write(OutputStream ostream, Transaction[] value) {
-        ostream.write_long(value.length);
+    public static void write(OutputStream ostream, List<Transaction> value) {
+        ostream.write_long(value.size());
         
-        for (int i = 0; i < value.length; ++i) {
-            TransactionHelper.write(ostream, value[i]);
-        }
+        value.forEach((transaction) -> {
+            TransactionHelper.write(ostream, transaction);
+        });
     }
 }

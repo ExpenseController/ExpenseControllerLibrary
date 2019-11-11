@@ -1,7 +1,7 @@
 package br.com.expenseController.persistence;
 
-import br.com.expenseController.model.Period;
 import br.com.expenseController.model.Transaction;
+import java.util.List;
 
 public interface TransactionPersistenceOperations {
 
@@ -13,7 +13,5 @@ public interface TransactionPersistenceOperations {
 
     Transaction load(int code);
 
-    Transaction[] loadAll();
-
-    Transaction[] loadPeriod(Period Period);
+    List<Transaction> loadAll();
 }

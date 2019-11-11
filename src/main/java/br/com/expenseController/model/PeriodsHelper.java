@@ -1,5 +1,7 @@
 package br.com.expenseController.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.omg.CORBA.Any;
 import org.omg.CORBA.ORB;
 import org.omg.CORBA.TypeCode;
@@ -11,14 +13,14 @@ abstract public class PeriodsHelper {
     private static String ID = "IDL:br/com/expenseController/Periods:1.0";
     private static TypeCode TYPE_CODE = null;
 
-    public static void insert(Any any, Period[] that) {
+    public static void insert(Any any, List<Period> that) {
         OutputStream out = any.create_output_stream();
         any.type(type());
         write(out, that);
         any.read_value(out.create_input_stream(), type());
     }
 
-    public static Period[] extract(Any any) {
+    public static List<Period> extract(Any any) {
         return read(any.create_input_stream());
     }
 
@@ -36,23 +38,23 @@ abstract public class PeriodsHelper {
         return ID;
     }
 
-    public static Period[] read(InputStream istream) {
-        Period value[] = null;
+    public static List<Period> read(InputStream istream) {
+        List<Period> value = null;
         int lenght = istream.read_long();
-        value = new Period[lenght];
+        value = new ArrayList<>(lenght);
 
-        for (int i = 0; i < value.length; ++i) {
-            value[i] = PeriodHelper.read(istream);
+        for (int i = 0; i < value.size(); ++i) {
+            value.add(PeriodHelper.read(istream));
         }
         
         return value;
     }
 
-    public static void write(OutputStream ostream, Period[] value) {
-        ostream.write_long(value.length);
+    public static void write(OutputStream ostream, List<Period> value) {
+        ostream.write_long(value.size());
         
-        for (int i = 0; i < value.length; ++i) {
-            PeriodHelper.write(ostream, value[i]);
-        }
+        value.forEach((period) -> {
+            PeriodHelper.write(ostream, period);
+        });
     }
 }

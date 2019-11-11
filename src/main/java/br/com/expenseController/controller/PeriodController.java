@@ -1,4 +1,6 @@
 package br.com.expenseController.controller;
 
-public interface PeriodController extends PeriodControllerOperations, org.omg.CORBA.Object, org.omg.CORBA.portable.IDLEntity {
+import org.omg.CORBA.portable.IDLEntity;
+
+public interface PeriodController extends PeriodControllerOperations, org.omg.CORBA.Object, IDLEntity {
 }

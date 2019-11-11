@@ -1,6 +1,7 @@
 package br.com.expenseController.controller;
 
 import br.com.expenseController.model.Period;
+import java.util.List;
 
 public interface PeriodControllerOperations {
 
@@ -12,5 +13,5 @@ public interface PeriodControllerOperations {
 
     Period load(int code);
 
-    Period[] loadAll();
+    List<Period> loadAll();
 }

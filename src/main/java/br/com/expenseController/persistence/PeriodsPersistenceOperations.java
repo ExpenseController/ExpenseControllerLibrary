@@ -1,8 +1,9 @@
 package br.com.expenseController.persistence;
 
 import br.com.expenseController.model.Period;
+import java.util.List;
 
-public interface PeriodPersistenceOperations {
+public interface PeriodsPersistenceOperations {
 
     boolean insert(Period period);
 
@@ -12,5 +13,5 @@ public interface PeriodPersistenceOperations {
 
     Period load(int code);
 
-    Period[] loadAll();
+    List<Period> loadAll();
 }
