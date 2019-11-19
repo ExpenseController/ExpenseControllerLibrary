@@ -39,11 +39,10 @@ abstract public class PeriodsHelper {
     }
 
     public static List<Period> read(InputStream istream) {
-        List<Period> value = null;
+        List<Period> value = new ArrayList<>();
         int lenght = istream.read_long();
-        value = new ArrayList<>(lenght);
 
-        for (int i = 0; i < value.size(); ++i) {
+        for (int i = 0; i < lenght; ++i) {
             value.add(PeriodHelper.read(istream));
         }
         
@@ -52,9 +51,6 @@ abstract public class PeriodsHelper {
 
     public static void write(OutputStream ostream, List<Period> value) {
         ostream.write_long(value.size());
-        
-        value.forEach((period) -> {
-            PeriodHelper.write(ostream, period);
-        });
+        value.forEach((period) -> PeriodHelper.write(ostream, period));
     }
 }

@@ -38,11 +38,10 @@ abstract public class TagsHelper {
     }
 
     public static List<Tag> read(InputStream istream) {
-        List<Tag> value = null;
+        List<Tag> value = new ArrayList<>();
         int lenght = istream.read_long();
-        value = new ArrayList<>(lenght);
 
-        for (int i = 0; i < value.size(); ++i) {
+        for (int i = 0; i < lenght; ++i) {
             value.add(TagHelper.read(istream));
         }
 
@@ -51,10 +50,7 @@ abstract public class TagsHelper {
 
     public static void write(OutputStream ostream, List<Tag> value) {
         ostream.write_long(value.size());
-        
-        for (int i = 0; i < value.size(); ++i) {
-            TagHelper.write(ostream, value.get(i));
-        }
+        value.forEach((tag) -> TagHelper.write(ostream, tag));
     }
 
 }
