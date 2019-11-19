@@ -5,11 +5,7 @@ import java.util.List;
 
 public interface PeriodsPersistenceOperations {
 
-    boolean insert(Period period);
-
-    boolean update(Period period);
-
-    boolean remove(Period period);
+    boolean save(List<Period> periods);
 
     Period load(int code);
 

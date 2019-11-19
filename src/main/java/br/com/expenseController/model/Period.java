@@ -1,5 +1,6 @@
 package br.com.expenseController.model;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import org.omg.CORBA.portable.IDLEntity;
@@ -45,5 +46,29 @@ public final class Period implements IDLEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+    
+    public BigDecimal outlayTotalValue() {
+        BigDecimal total = BigDecimal.ZERO;
+        
+        this.outlay.forEach((transaction) -> {
+            total.add(transaction.getValue());
+        });
+        
+        return total;
+    }
+    
+    public BigDecimal earningsTotalValue() {
+        BigDecimal total = BigDecimal.ZERO;
+        
+        this.earnings.forEach((transaction) -> {
+            total.add(transaction.getValue());
+        });
+        
+        return total;
+    }
+    
+    public BigDecimal wallet() {
+        return earningsTotalValue().subtract(outlayTotalValue());
     }
 }

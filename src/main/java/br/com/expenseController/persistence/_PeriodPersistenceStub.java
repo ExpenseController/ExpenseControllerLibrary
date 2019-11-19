@@ -18,16 +18,16 @@ import org.omg.CORBA.portable.RemarshalException;
 
 public class _PeriodPersistenceStub extends ObjectImpl implements PeriodPersistence {
 
-    private static String[] IDS = {
+    private static final String[] IDS = {
         "IDL:br/com/expenseController/persistence/PeriodPersistence:1.0"
     };
     
-    public boolean insert(Period period) {
+    public boolean save(List<Period> periods) {
         InputStream inputStream = null;
         
         try {
             OutputStream outputStream = _request("insert", true);
-            PeriodHelper.write(outputStream, period);
+            PeriodsHelper.write(outputStream, periods);
             inputStream = _invoke(outputStream);
             boolean result = inputStream.read_boolean();
             return result;
@@ -36,47 +36,7 @@ public class _PeriodPersistenceStub extends ObjectImpl implements PeriodPersiste
             String _id = appException.getId();
             throw new MARSHAL(_id);
         } catch (RemarshalException remarshalException) {
-            return insert(period);
-        } finally {
-            _releaseReply(inputStream);
-        }
-    }
-
-    public boolean update(Period period) {
-        InputStream inputStream = null;
-     
-        try {
-            OutputStream outputStream = _request("update", true);
-            PeriodHelper.write(outputStream, period);
-            inputStream = _invoke(outputStream);
-            boolean result = inputStream.read_boolean();
-            return result;
-        } catch (ApplicationException appException) {
-            inputStream = appException.getInputStream();
-            String _id = appException.getId();
-            throw new MARSHAL(_id);
-        } catch (RemarshalException remarshalException) {
-            return update(period);
-        } finally {
-            _releaseReply(inputStream);
-        }
-    }
-
-    public boolean remove(Period period) {
-        InputStream inputStream = null;
-    
-        try {
-            OutputStream outputStream = _request("remove", true);
-            PeriodHelper.write(outputStream, period);
-            inputStream = _invoke(outputStream);
-            boolean result = inputStream.read_boolean();
-            return result;
-        } catch (ApplicationException appException) {
-            inputStream = appException.getInputStream();
-            String _id = appException.getId();
-            throw new MARSHAL(_id);
-        } catch (RemarshalException remarshalException) {
-            return remove(period);
+            return save(periods);
         } finally {
             _releaseReply(inputStream);
         }

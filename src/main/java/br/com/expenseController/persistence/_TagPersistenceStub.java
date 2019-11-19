@@ -17,12 +17,12 @@ public class _TagPersistenceStub extends ObjectImpl implements TagPersistence {
         "IDL:br/com/expenseController/persistence/TagPersistence:1.0"
     };
     
-    public boolean insert(Tag tag) {
+    public boolean save(List<Tag> tags) {
         InputStream $in = null;
 
         try {
-            OutputStream $out = _request("insert", true);
-            TagHelper.write($out, tag);
+            OutputStream $out = _request("save", true);
+            TagsHelper.write($out, tags);
             $in = _invoke($out);
             boolean $result = $in.read_boolean();
             return $result;
@@ -31,49 +31,11 @@ public class _TagPersistenceStub extends ObjectImpl implements TagPersistence {
             String _id = $ex.getId();
             throw new org.omg.CORBA.MARSHAL(_id);
         } catch (RemarshalException $rm) {
-            return insert(tag);
+            return save(tags);
         } finally {
             _releaseReply($in);
         }
     } // insert
-
-    public boolean update(Tag tag) {
-        InputStream $in = null;
-        try {
-            OutputStream $out = _request("update", true);
-            TagHelper.write($out, tag);
-            $in = _invoke($out);
-            boolean $result = $in.read_boolean();
-            return $result;
-        } catch (ApplicationException $ex) {
-            $in = $ex.getInputStream();
-            String _id = $ex.getId();
-            throw new org.omg.CORBA.MARSHAL(_id);
-        } catch (RemarshalException $rm) {
-            return update(tag);
-        } finally {
-            _releaseReply($in);
-        }
-    } // update
-
-    public boolean remove(Tag tag) {
-        InputStream $in = null;
-        try {
-            OutputStream $out = _request("remove", true);
-            TagHelper.write($out, tag);
-            $in = _invoke($out);
-            boolean $result = $in.read_boolean();
-            return $result;
-        } catch (ApplicationException $ex) {
-            $in = $ex.getInputStream();
-            String _id = $ex.getId();
-            throw new org.omg.CORBA.MARSHAL(_id);
-        } catch (RemarshalException $rm) {
-            return remove(tag);
-        } finally {
-            _releaseReply($in);
-        }
-    } // remove
 
     public Tag load(int code) {
         InputStream $in = null;

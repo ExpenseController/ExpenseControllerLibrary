@@ -5,11 +5,7 @@ import java.util.List;
 
 public interface TagPersistenceOperations {
 
-    boolean insert(Tag tag);
-
-    boolean update(Tag tag);
-
-    boolean remove(Tag tag);
+    boolean save(List<Tag> tags);
 
     Tag load(int code);
 
